@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Neon Mega Hub</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+<div id="authView" class="auth-view">
+  <div class="auth-card">
+    <div class="logo">✦</div>
+    <h1>NEON MEGA HUB</h1>
+    <p>Your personal digital universe.</p>
+
+    <input id="authEmail" type="email" placeholder="Email">
+    <input id="authPassword" type="password" placeholder="Password">
+
+    <div class="auth-actions">
+      <button id="loginBtn">Log in</button>
+      <button id="signupBtn">Sign up</button>
+    </div>
+
+    <button id="guestBtn" class="ghost-btn">Continue as guest</button>
+    <p id="authMessage"></p>
+  </div>
+</div>
+
+
+<div id="app" class="app hidden">
+
+  <aside class="sidebar">
+
+    <div class="brand">
+      <span>✦</span>
+      <strong>NEON HUB</strong>
+    </div>
+
+    <button id="newChatBtn" class="new-chat">＋ New Chat</button>
+
+    <div id="chatList" class="chat-list"></div>
+
+    <nav>
+      <button data-page="chat">💬 Chat</button>
+      <button data-page="study">📚 Study</button>
+      <button data-page="gallery">🎨 Gallery</button>
+      <button data-page="arcade">🎮 Arcade</button>
+      <button data-page="movies">🎬 Movies</button>
+      <button data-page="soundboard">🎧 Soundboard</button>
+      <button data-page="space">🌌 Space</button>
+      <button data-page="quiz">🧩 Quiz</button>
+      <button data-page="notes">📝 Notes</button>
+      <button data-page="progress">📊 Progress</button>
+      <button data-page="settings">⚙️ Settings</button>
+    </nav>
+
+  </aside>
+
+
+  <main class="main">
+
+    <header class="topbar">
+      <div>
+        <h2 id="pageTitle">💬 Neon Chat</h2>
+        <p id="pageSubtitle">Your conversations</p>
+      </div>
+
+      <div id="connectionStatus">Online</div>
+    </header>
+
+
+    <!-- CHAT -->
+
+    <section id="page-chat" class="page active">
+
+      <div id="messages" class="messages"></div>
+
+      <div class="composer">
+        <input id="messageInput" placeholder="Type a message...">
+        <button id="sendMessageBtn">Send</button>
+      </div>
+
+    </section>
+
+
+    <!-- STUDY -->
+
+    <section id="page-study" class="page">
+
+      <div class="section-title">
+        <div>
+          <h2>📚 Study Dashboard</h2>
+          <p>Organize subjects and tasks.</p>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+
+        <div class="panel">
+          <h3>Subjects</h3>
+
+          <div class="input-row">
+            <input id="subjectName" placeholder="Subject name">
+            <input id="subjectIcon" value="📚" maxlength="2">
+            <button id="addSubjectBtn">Add</button>
+          </div>
+
+          <div id="subjectList"></div>
+        </div>
+
+
+        <div class="panel">
+          <h3>Tasks</h3>
+
+          <div class="input-row">
+            <input id="taskName" placeholder="Task">
+            <button id="addTaskBtn">Add</button>
+          </div>
+
+          <div id="taskList"></div>
+        </div>
+
+      </div>
+
+
+      <div class="panel timer-panel">
+
+        <h3>⏱ Focus Timer</h3>
+
+        <div id="timerDisplay">25:00</div>
+
+        <div class="timer-buttons">
+          <button id="timerStart">Start</button>
+          <button id="timerPause">Pause</button>
+          <button id="timerReset">Reset</button>
+        </div>
+
+        <div class="timer-presets">
+          <button data-minutes="25">25 min</button>
+          <button data-minutes="15">15 min</button>
+          <button data-minutes="5">5 min</button>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- GALLERY -->
+
+    <section id="page-gallery" class="page">
+
+      <div class="section-title">
+        <div>
+          <h2>🎨 Interactive Gallery</h2>
+          <p>Explore neon artwork.</p>
+        </div>
+      </div>
+
+      <div id="galleryGrid" class="gallery-grid"></div>
+
+    </section>
+
+
+    <!-- ARCADE -->
+
+    <section id="page-arcade" class="page">
+
+      <div class="section-title">
+        <div>
+          <h2>🎮 Neon Arcade</h2>
+          <p>Play and save your scores.</p>
+        </div>
+      </div>
+
+      <div class="arcade-tabs">
+        <button data-game="tap">⚡ Neon Tap</button>
+        <button data-game="memory">🧠 Memory</button>
+      </div>
+
+
+      <div id="tapGame" class="game panel">
+
+        <h3>⚡ Neon Tap</h3>
+
+        <div class="game-stats">
+          <span>Time: <b id="tapTime">20</b></span>
+          <span>Score: <b id="tapScore">0</b></span>
+        </div>
+
+        <button id="startTapBtn">Start</button>
+
+        <div id="tapArea"></div>
+
+      </div>
+
+
+      <div id="memoryGame" class="game panel hidden">
+
+        <h3>🧠 Memory</h3>
+
+        <div id="memoryGrid" class="memory-grid"></div>
+
+        <button id="startMemoryBtn">New Game</button>
+
+      </div>
+
+    </section>
+
+
+    <!-- MOVIES -->
+
+    <section id="page-movies" class="page">
+
+      <div class="section-title">
+        <div>
+          <h2>🎬 Movie Discovery</h2>
+          <p>Browse the built-in movie catalog.</p>
+        </div>
+      </div>
+
+      <input id="movieSearch" class="wide-input" placeholder="Search movies...">
+
+      <div id="movieGrid" class="movie-grid"></div>
+
+    </section>
+
+
+    <!-- SOUNDBOARD -->
+
+    <section id="page-soundboard" class="page">
+
+      <div class="section-title">
+        <div>
+          <h2>🎧 Soundboard</h2>
+          <p>Generate sounds with the browser audio engine.</p>
+        </div>
+      </div>
+
+      <div class="sound-grid">
+
+        <button class="sound-button" data-sound="click">🔘 Click</button>
+        <button class="sound-button" data-sound="laser">⚡ Laser</button>
+        <button class="sound-button" data-sound="power">🔋 Power</button>
+        <button class="sound-button" data-sound="coin">🪙 Coin</button>
+        <button class="sound-button" data-sound="success">✨ Success</button>
+        <button class="sound-button" data-sound="error">💥 Error</button>
+
+      </div>
+
+    </section>
+
+
+    <!-- SPACE -->
+
+    <section id="page-space" class="page">
+
+      <div class="section-title">
+        <div>
+          <h2>🌌 Space Explorer</h2>
+          <p>Click a planet to explore it.</p>
+        </div>
+      </div>
+
+      <div class="space-layout">
+
+        <div id="solarSystem" class="solar-system"></div>
+
+        <div id="planetInfo" class="panel planet-info">
+          <h3>🌍 Earth</h3>
+          <p>Select a planet.</p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- QUIZ -->
+
+    <section id="page-quiz" class="page">
+
+      <div class="quiz-card panel">
+
+        <div id="quizProgress"></div>
+
+        <h2 id="quizQuestion"></h2>
+
+        <div id="quizAnswers"></div>
+
+        <button id="nextQuizBtn">Next</button>
+
+      </div>
+
+    </section>
+
+
+    <!-- NOTES -->
+
+    <section id="page-notes" class="page">
+
+      <div class="section-title">
+
+        <div>
+          <h2>📝 Notes</h2>
+          <p>Write and save your notes.</p>
+        </div>
+
+        <button id="newNoteBtn">＋ New Note</button>
+
+      </div>
+
+
+      <div class="notes-layout">
+
+        <div id="notesList" class="notes-list"></div>
+
+        <div class="note-editor panel">
+
+          <input id="noteTitle" placeholder="Note title">
+
+          <textarea
+            id="noteContent"
+            placeholder="Write your note..."
+          ></textarea>
+
+          <div class="input-row">
+            <button id="saveNoteBtn">Save</button>
+            <button id="deleteNoteBtn" class="danger">Delete</button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PROGRESS -->
+
+    <section id="page-progress" class="page">
+
+      <div class="section-title">
+
+        <div>
+          <h2>📊 Progress</h2>
+          <p>Your activity inside Neon Hub.</p>
+        </div>
+
+      </div>
+
+
+      <div class="stats-grid">
+
+        <div class="stat">
+          <span>XP</span>
+          <strong id="xpValue">0</strong>
+        </div>
+
+        <div class="stat">
+          <span>🔥 Streak</span>
+          <strong id="streakValue">0</strong>
+        </div>
+
+        <div class="stat">
+          <span>Tasks</span>
+          <strong id="tasksValue">0</strong>
+        </div>
+
+        <div class="stat">
+          <span>Focus</span>
+          <strong id="focusValue">0m</strong>
+        </div>
+
+      </div>
+
+
+      <div class="panel">
+        <h3>Activity</h3>
+        <div id="progressActivity"></div>
+      </div>
+
+    </section>
+
+
+    <!-- SETTINGS -->
+
+    <section id="page-settings" class="page">
+
+      <div class="panel settings">
+
+        <h2>⚙️ Settings</h2>
+
+        <label>
+          Username
+          <input id="usernameInput" placeholder="Username">
+        </label>
+
+        <label>
+          Avatar URL
+          <input id="avatarInput" placeholder="Optional avatar URL">
+        </label>
+
+        <label>
+          Theme
+          <select id="themeSelect">
+            <option value="purple">Purple</option>
+            <option value="blue">Blue</option>
+            <option value="pink">Pink</option>
+            <option value="green">Green</option>
+          </select>
+        </label>
+
+        <button id="saveSettingsBtn">Save Settings</button>
+
+        <button id="logoutBtn" class="danger">Log out</button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.min.js"></script>
+<script src="./script.js"></script>
+
+</body>
+</html>
